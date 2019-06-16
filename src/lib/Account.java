@@ -39,10 +39,10 @@ public class Account {
 			System.out.println("Username or Password incorrect");
 			return 0;
 		}
-		
-		if (password==this.password) {
-			return 1;
-		}else{
+		if (password.contentEquals(this.password)) {
+			return get_userdata(username);
+		}
+		else{
 			System.out.println("Username or Password incorrect");
 			return 0;
 		}

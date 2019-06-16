@@ -11,5 +11,7 @@ public class Main {
 		String input_password = scan.next();
 		Account user = new Account();
 		user.login(input_username,input_password);
+		System.out.println(user.team_name);
+		
 	}
 }
