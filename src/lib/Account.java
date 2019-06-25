@@ -11,10 +11,9 @@ public class Account {
 	private String player_name[];
 	private String contact;
 	
-	private int get_userdata(String username) {
+	private int set_userdata(String username) {
 		String[][] account_data = account_datas.get(username);
 		if(account_data == null) {
-			System.out.println(username);
 			return 0;
 		}else {
 			this.username = username;
@@ -27,22 +26,26 @@ public class Account {
 		return 1;
 	}
 	
+	public String[][] get_userdata() {
+		return account_datas.get(this.username);
+	}
+	
 	public int login() {
-		Lib.clscr();
-		System.out.println("Username :");
-		String input_username = scan.next();
-		System.out.println("Password :");
-		String input_password = scan.next();
-		if(get_userdata(input_username)==0) {
-			System.out.println("Username or Password incorrect");
-			return 0;
-		}
-		if (input_password.contentEquals(this.password)) {
-			return get_userdata(username);
-		}
-		else{
-			System.out.println("Username or Password incorrect");
-			return 0;
+		while(true) {
+			Lib.clscr();
+			System.out.println("Username : \t");
+			String input_username = scan.next();
+			System.out.println("Password : \t");
+			String input_password = scan.next();
+			if(set_userdata(input_username)==0) {
+				System.out.println("Username or Password incorrect");
+				Lib.pressAnyKeyToContinue();
+			}else if (input_password.contentEquals(this.password)) {
+				return set_userdata(username);
+			}else{
+				System.out.println("Username or Password incorrect");
+				Lib.pressAnyKeyToContinue();
+			}
 		}
 	}
 	

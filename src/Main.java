@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import lib.Account;
 import lib.Lib;
+import lib.Schedule;
 
 public class Main {
 	
@@ -13,12 +14,11 @@ public class Main {
 		user.add_account("username1","password1","team_name1","leader_name1",new String[] {"abc1","cde1"},"contact1");
 		user.add_account("username2","password2","team_name2","leader_name2",new String[] {"abc2","cde2"},"contact2");
 		
-		lable:
 		while(true) {
-			Lib.clscr();
 			user.login();
-			
-			lable1:
+			Schedule schedule = new Schedule(user);
+			schedule.addSchedule("Jl. Mesjid", "18/12/2019", "20:20", "note here");
+			lable:
 			while(true) {
 				Lib.clscr();
 				System.out.println("1. Create match");
@@ -31,10 +31,11 @@ public class Main {
 				case 1:
 					break;
 				case 2:
+					schedule.showSchedule();
 					break;
 				case 3:
 					user.show_profile();
-					break lable1;
+					break;
 				case 4:
 					break lable;
 				default:
