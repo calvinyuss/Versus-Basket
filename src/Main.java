@@ -24,22 +24,22 @@ public class Main {
 				System.out.println("1. Create match");
 				System.out.println("2. Schedule");
 				System.out.println("3. Profile");
-				System.out.println("4. log out");
+				System.out.println("0. log out");
 				System.out.println("choice : ");
 				int userInput = scan.nextInt();
 				switch(userInput) {
 				case 1:
 					break;
 				case 2:
-					schedule.showSchedule();
+					schedule.showAllSchedule();
 					break;
 				case 3:
 					user.show_profile();
 					break;
-				case 4:
+				case 0:
 					break lable;
 				default:
-					System.out.println("Input 1 - 3");
+					System.out.println("Input 0 - 4");
 					Lib.pressAnyKeyToContinue();
 				}
 			}

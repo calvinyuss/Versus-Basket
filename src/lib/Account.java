@@ -2,7 +2,6 @@ package lib;
 import java.util.*;
 public class Account {
 	private Map<String,String[][]> account_datas = new HashMap<String,String[][]>();
-//	Lib lib = new Lib();
 	Scanner scan = new Scanner(System.in);
 	private String username;
 	private String password;
@@ -10,6 +9,7 @@ public class Account {
 	private String leader_name;
 	private String player_name[];
 	private String contact;
+	private String notif;
 	
 	private int set_userdata(String username) {
 		String[][] account_data = account_datas.get(username);
@@ -22,6 +22,7 @@ public class Account {
 			this.leader_name = account_data[2][0];
 			this.player_name = account_data[3];
 			this.contact = account_data[4][0];
+			this.notif  = account_data[5][0];
 		}
 		return 1;
 	}
@@ -59,6 +60,7 @@ public class Account {
 			System.out.printf("|%2s| ",i);
 		}
 		System.out.printf("%n%-15s %s %n","Contact",this.contact);
+		System.out.printf("%n%-15s %s %n","Contact",this.notif);   // delete this later
 		System.out.println("\n1. change account");
 		System.out.println("2. Exit");
 		try {
@@ -81,7 +83,7 @@ public class Account {
 	}
 	
 	public void add_account(String username, String password, String team_name, String leader_name, String[] player_name,String contact){
-		account_datas.put(username,new String[][] {{password},{team_name},{leader_name},player_name,{contact}});
+		account_datas.put(username,new String[][] {{password},{team_name},{leader_name},player_name,{contact},{"0"}});
 	}
 	
 	public void change_account() {
@@ -180,4 +182,5 @@ public class Account {
 		break;
 		}
 	}
+	
 }
