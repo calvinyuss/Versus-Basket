@@ -1,3 +1,4 @@
+package Main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,12 @@ import lib.Lib;
 import lib.Schedule;
 
 public class Main {
+	public static Map<String,String[][]> schedule_data = new HashMap<String,String[][]>();
+	public static ArrayList<String[]>schedule_history_temp = new ArrayList<String[]>();
+	public static ArrayList<String[]>schedule_history_notif = new ArrayList<String[]>();
+	public static ArrayList<String[]>schedule_history = new ArrayList<String[]>();
+	public static Map<String,String[][]> account_datas = new HashMap<String,String[][]>();
+
 	public static void main(String[] args) {			
 		Scanner scan = new Scanner(System.in);
 		Account user = new Account();
@@ -22,15 +29,17 @@ public class Main {
 			lable:
 			while(true) {
 				Lib.clscr();
-				user.refreshData();
+				user.refreshData();			
 				schedule.ShowNotif(user.get_userdata()[1][0]);
 				Lib.clscr();
 				System.out.println("1. Create match");
 				System.out.println("2. Schedule");
 				System.out.println("3. Profile");
+				System.out.println("4. my match");
 				System.out.println("0. log out");
-				System.out.println("choice : ");
+				System.out.print("choice : ");
 				int userInput = scan.nextInt();
+				scan.nextLine();
 				switch(userInput) {
 				case 1:
 					schedule.create();
@@ -41,6 +50,10 @@ public class Main {
 				case 3:
 					user.show_profile();
 					break;
+				case 4:
+					schedule.showHistory();
+				case 5:
+					schedule.cancleMatch(user.get_userdata()[1][0]);
 				case 0:
 					break lable;
 				default:

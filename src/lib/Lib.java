@@ -1,14 +1,19 @@
 package lib;
 import java.io.*;
+import java.util.Map;
+import java.util.Map.Entry;
 public class Lib {
 	public static void clscr(){
 	    //Clears Screen in java
-	    try {
-	        if (System.getProperty("os.name").contains("Windows"))
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-	        else
-	            Runtime.getRuntime().exec("clear");
-	    } catch (IOException | InterruptedException ex) {}
+//	    try {
+//	        if (System.getProperty("os.name").contains("Windows"))
+//	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//	        else
+//	            Runtime.getRuntime().exec("clear");
+//	    } catch (IOException | InterruptedException ex) {}
+		for(int i=0;i<=20;i++) {
+			System.out.println();
+		}
 	}
 	
 	public static void pressAnyKeyToContinue()
@@ -21,4 +26,13 @@ public class Lib {
 	        catch(Exception e)
 	        {}  
 	 }
+	
+	public static String getKey(Map<String, String[][]> account_datas, String team_name) {
+		for(Entry<String, String[][]> entry : account_datas.entrySet()) {
+			if(entry.getValue()[1][0] == team_name) {
+				return entry.getKey();
+			}
+		}
+		return null;
+	}
 }

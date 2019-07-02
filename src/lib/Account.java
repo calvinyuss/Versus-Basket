@@ -1,7 +1,8 @@
 package lib;
 import java.util.*;
-public class Account {
-	private Map<String,String[][]> account_datas = new HashMap<String,String[][]>();
+
+import Main.Main;
+public class Account extends Main{
 	Scanner scan = new Scanner(System.in);
 	private String username;
 	private String password;
@@ -9,7 +10,6 @@ public class Account {
 	private String leader_name;
 	private String player_name[];
 	private String contact;
-	private String notif;
 	
 	private int set_userdata(String username) {
 		String[][] account_data = account_datas.get(username);
@@ -22,9 +22,17 @@ public class Account {
 			this.leader_name = account_data[2][0];
 			this.player_name = account_data[3];
 			this.contact = account_data[4][0];
-			this.notif  = account_data[5][0];
 		}
 		return 1;
+	}
+	
+	public void refreshData() {
+		String[][] account_data = account_datas.get(this.username);
+		this.password = account_data[0][0];
+		this.team_name = account_data[1][0];
+		this.leader_name = account_data[2][0];
+		this.player_name = account_data[3];
+		this.contact = account_data[4][0];
 	}
 	
 	public String[][] get_userdata() {
@@ -34,9 +42,9 @@ public class Account {
 	public int login() {
 		while(true) {
 			Lib.clscr();
-			System.out.println("Username : \t");
+			System.out.print("Username : ");
 			String input_username = scan.next();
-			System.out.println("Password : \t");
+			System.out.print("Password : ");
 			String input_password = scan.next();
 			if(set_userdata(input_username)==0) {
 				System.out.println("Username or Password incorrect");
@@ -60,12 +68,10 @@ public class Account {
 			System.out.printf("|%2s| ",i);
 		}
 		System.out.printf("%n%-15s %s %n","Contact",this.contact);
-		System.out.printf("%n%-15s %s %n","Contact",this.notif);   // delete this later
 		System.out.println("\n1. change account");
 		System.out.println("2. Exit");
-		try {
-			
-			int userInput = scan.nextInt();
+		int userInput = scan.nextInt();
+		try {			
 			switch(userInput) {
 			case 1:
 				change_account();
@@ -95,9 +101,10 @@ public class Account {
 			System.out.println("3. Player name");
 			System.out.println("4. Contact");
 			System.out.println("5. Exit");
-			System.out.println("Your choice : ");
+			System.out.print("Your choice : ");
+			int user_input = scan.nextInt();
+			scan.nextLine();
 			try {
-				int user_input = scan.nextInt();
 				switch(user_input){
 				case 1 :
 					Lib.clscr();
