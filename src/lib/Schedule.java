@@ -116,16 +116,16 @@ public class Schedule extends Main{
 	public void showHistory() {
 		if(schedule_data.containsKey(this.user[1][0])) {
 			//jika create match sudah ada dan belum di click user lain
-			System.out.println(schedule_data.get(this.user[1][0])[0][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[2][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[3][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[4][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[5][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[6][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[7][0]);
+			System.out.printf("%-10s  %-10s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
+			System.out.printf("%-10s  %-10s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
+			System.out.printf("%-10s  %-10s %n","Player",schedule_data.get(this.user[1][0])[2][0]);//loop all player
+			System.out.printf("%-10s  %-10s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
+			System.out.printf("%-10s  %-10s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
+			System.out.printf("%-10s  %-10s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
+			System.out.printf("%-10s  %-10s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
+			System.out.printf("%-10s  %-10s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
 		}else {
-			// jika sudah ketemu match lain
+			// jika sudah ketemu match dengan user lain
 			for(String [] i : schedule_history_temp) {
 				if(i[1].contentEquals(this.user[1][0])) {
 					//tampilkan data ongoing match
@@ -222,15 +222,17 @@ public class Schedule extends Main{
 		}else {
 			while(true) {
 				for(Entry<String, String[][]> entry : schedule_data.entrySet()) {
-					System.out.println("date "+entry.getValue()[5][0]);
-					System.out.println("time "+entry.getValue()[6][0]);
-					System.out.println("note "+entry.getValue()[7][0]);
-					System.out.println("team "+entry.getValue()[0][0]);
-					System.out.println("leader "+entry.getValue()[1][0]);
-					for(String str : entry.getValue()[2]) {
-						System.out.println(str);
+					System.out.printf("%-10s  %-10s %n","Team",entry.getValue()[0][0]);
+					System.out.printf("%-10s  %-10s %n","Location",entry.getValue()[2][0]);
+					System.out.printf("%-10s  %-10s %n","Date",entry.getValue()[5][0]);
+					System.out.printf("%-10s  %-10s %n","Time",entry.getValue()[6][0]);
+					System.out.printf("%-10s  %-10s %n","Leader",entry.getValue()[1][0]);
+					System.out.printf("%-10s","Player");
+					for(String player : entry.getValue()[2]) {
+						System.out.printf("%-10s%n",player);
 					}
-					System.out.println(""+entry.getValue()[3][0]);
+					System.out.printf("\"%-10s  %-10s %n\",","Contact",entry.getValue()[3][0]);
+					System.out.printf("%-10s  %-10s %n","Note",entry.getValue()[7][0]);
 					System.out.println("==========================");
 				}
 				System.out.print("\nInput team name to join match [0 to exit]: "); String user_input =scan.nextLine();

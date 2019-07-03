@@ -1,6 +1,7 @@
 package Main;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -36,32 +37,37 @@ public class Main {
 				System.out.println("2. Schedule");
 				System.out.println("3. Profile");
 				System.out.println("4. my match");
-				System.out.println("5. my match");
+				System.out.println("5. delete match");
 				System.out.println("0. log out");
 				System.out.print("choice : ");
-				int userInput = scan.nextInt();
-				scan.nextLine();
-				switch(userInput) {
-				case 1:
-					schedule.create();
-					break;
-				case 2:
-					schedule.showAllSchedule();
-					break;
-				case 3:
-					user.show_profile();
-					break;
-				case 4:
-					schedule.showHistory();
-					break;
-				case 5:
-					schedule.cancleMatch(user.get_userdata()[1][0]);
-					break;
-				case 0:
-					break lable;
-				default:
-					System.out.println("Input 0 - 4");
-					Lib.pressAnyKeyToContinue();
+				try {
+					//error handling infinite loop still error
+					int userInput = scan.nextInt();
+					switch(userInput) {
+					case 1:
+						schedule.create();
+						break;
+					case 2:
+						schedule.showAllSchedule();
+						break;
+					case 3:
+						user.show_profile();
+						break;
+					case 4:
+						schedule.showHistory();
+						break;
+					case 5:
+						schedule.cancleMatch(user.get_userdata()[1][0]);
+						break;
+					case 0:
+						break lable;
+					default:
+						System.out.println("Input 0 - 4");
+						Lib.pressAnyKeyToContinue();
+					}
+				}catch(InputMismatchException e) {
+					System.out.println("Wrong Input");
+					
 				}
 			}
 		}
