@@ -114,16 +114,29 @@ public class Schedule extends Main{
 	}
 	
 	public void showHistory() {
-		for(String [] i : schedule_history_temp) {
-			if(i[1].contentEquals(this.user[1][0])) {
-				//tampilkan data ongoing match
-				System.out.println("enemy "+i[0]);
-				System.out.println("my "+i[1]);
+		if(schedule_data.containsKey(this.user[1][0])) {
+			//jika create match sudah ada dan belum di click user lain
+			System.out.println(schedule_data.get(this.user[1][0])[0][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[2][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[3][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[4][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[5][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[6][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[7][0]);
+		}else {
+			// jika sudah ketemu match lain
+			for(String [] i : schedule_history_temp) {
+				if(i[1].contentEquals(this.user[1][0])) {
+					//tampilkan data ongoing match
+					System.out.println("enemy "+i[0]);
+					System.out.println("my "+i[1]);
+				}			
 			}
 		}
-		
+		// match yang pernah
 		System.out.println("=======================================");
-		for(String [] i : schedule_history_temp) {
+		for(String [] i : schedule_history) {
 			if(i[0].contentEquals(this.user[1][0])) {
 				//show finished match
 				System.out.println("=============================");
@@ -133,32 +146,69 @@ public class Schedule extends Main{
 	}
 	
 	public void cancleMatch(String teamName) {
-		for(String[] i : schedule_history_temp) {
-			if(i[0].contentEquals(teamName) || i[1].contentEquals(teamName)) {
-				System.out.printf("%s versus %s",i[0],i[1]);
-				System.out.println("Location "+i[2]);
-				System.out.println("date"+i[3]);
-				System.out.println("date"+i[4]);
-				System.out.println("\n1. Yes");
-				System.out.println("\n2. Exit");
-				System.out.println("are sure want to cancle this match : ");
-				int userInput = scan.nextInt();
-				try {
-					if(userInput==1) {
-						System.out.println(schedule_history_temp.remove(i));
-						break;
-					}else if(userInput==2) {
-						break;
+		if(schedule_data.containsKey(this.user[1][0])) {
+			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[2][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[3][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[4][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[5][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[6][0]);
+			System.out.println(schedule_data.get(this.user[1][0])[7][0]);
+			System.out.println("\n1. Yes");
+			System.out.println("\n2. Exit");
+			System.out.println("are sure want to cancle this match : ");
+			int userInput = scan.nextInt();
+			try {
+				if(userInput==1) {
+					schedule_data.remove(this.user[1][0]);
+					if(schedule_data.containsKey(this.user[1][0])) {
+						System.out.println("Somthing wrong can't delete match");
 					}else {
-						System.out.println("Input 1 - 2");
+						System.out.println("match has been deleted");
+					}
+				}else if(userInput==2) {
+				}else {
+					System.out.println("Input 1 - 2");
+				}					
+			}catch(InputMismatchException e) {
+				System.out.println("Integer only");
+			}
+			
+		}else {
+			for(String[] i : schedule_history_temp) {
+				if(i[0].contentEquals(teamName) || i[1].contentEquals(teamName)) {
+					System.out.printf("%s versus %s",i[0],i[1]);
+					System.out.println("Location "+i[2]);
+					System.out.println("date"+i[3]);
+					System.out.println("date"+i[4]);
+					System.out.println("\n1. Yes");
+					System.out.println("\n2. Exit");
+					System.out.println("are sure want to cancle this match : ");
+					int userInput = scan.nextInt();
+					try {
+						if(userInput==1) {
+							System.out.println(schedule_history_temp.remove(i));
+							if(schedule_history_temp.contains(i)) {
+								System.out.println("Somthing wrong can't delete match");
+							}else {
+								System.out.println("match has been deleted");
+							}
+							break;
+						}else if(userInput==2) {
+							break;
+						}else {
+							System.out.println("Input 1 - 2");
+							break;
+						}					
+					}catch(InputMismatchException e) {
+						System.out.println("Integer only");
 						break;
-					}					
-				}catch(InputMismatchException e) {
-					System.out.println("Integer only");
-					break;
+					}
 				}
 			}
 		}
+		Lib.clscr();
 	}
 	public void refreshHistory() {
 		//from temp history to history
