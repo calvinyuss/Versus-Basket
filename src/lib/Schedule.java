@@ -99,12 +99,12 @@ public class Schedule extends Main{
 		for(String[] i : schedule_history_notif) {
 			if(i[0]==team_name) {
 				System.out.println("woi tolol match anda sudah ada");
-				System.out.println(i[0]);
-				System.out.println(i[1]);
-				System.out.println(i[2]);
-				System.out.println(i[3]);
-				System.out.println(i[4]);
-				System.out.println(i[5]);
+				System.out.printf("%-10s  %-10s %n","Your Team",i[0]); //team 1
+				System.out.printf("%-10s  %-10s %n","Enemy Team",i[1]); //team 2
+				System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
+				System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
+				System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
+				System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
 				String[] arr = {i[0],i[1],i[2],i[3],i[4],i[5]};
 				schedule_history_notif.remove(i);
 				Lib.pressAnyKeyToContinue();
@@ -147,14 +147,14 @@ public class Schedule extends Main{
 	
 	public void cancleMatch(String teamName) {
 		if(schedule_data.containsKey(this.user[1][0])) {
-			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[1][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[2][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[3][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[4][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[5][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[6][0]);
-			System.out.println(schedule_data.get(this.user[1][0])[7][0]);
+			System.out.printf("%-10s  %-10s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
+			System.out.printf("%-10s  %-10s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
+			System.out.printf("%-10s  %-10s %n","Player",schedule_data.get(this.user[1][0])[2][0]);//loop all player
+			System.out.printf("%-10s  %-10s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
+			System.out.printf("%-10s  %-10s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
+			System.out.printf("%-10s  %-10s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
+			System.out.printf("%-10s  %-10s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
+			System.out.printf("%-10s  %-10s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
 			System.out.println("\n1. Yes");
 			System.out.println("\n2. Exit");
 			System.out.println("are sure want to cancle this match : ");
@@ -181,14 +181,22 @@ public class Schedule extends Main{
 					System.out.printf("%s versus %s",i[0],i[1]);
 					System.out.println("Location "+i[2]);
 					System.out.println("date"+i[3]);
-					System.out.println("date"+i[4]);
+					System.out.println("time"+i[4]);
 					System.out.println("\n1. Yes");
 					System.out.println("\n2. Exit");
 					System.out.println("are sure want to cancle this match : ");
 					int userInput = scan.nextInt();
 					try {
 						if(userInput==1) {
-							System.out.println(schedule_history_temp.remove(i));
+							if(i[0].contentEquals(teamName)) {
+								schedule_history_temp.remove(i);								
+							}else {
+								String[][] data = account_datas.get(Lib.getKey(account_datas, i[0]));
+								String[][] temp = {data[1],data[2],data[3],data[4],{i[2]},{i[3]},{i[4]},{i[5]}};
+								schedule_data.put(i[0],temp);
+								schedule_history_temp.remove(i);	
+							}
+							
 							if(schedule_history_temp.contains(i)) {
 								System.out.println("Somthing wrong can't delete match");
 							}else {
