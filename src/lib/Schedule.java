@@ -48,8 +48,8 @@ public class Schedule extends Main{
 		schedule_data.remove(team_name);
 	}
 	
-	public void addNotif(String team_name1,String team_name2,String location1,String date1,String time1,String note1) {
-		String [] a = {team_name1,team_name2,location1,date1,time1,note1};
+	public void addNotif(String team_name1,String team_name2,String location1,String date1,String time1,String note1,String contact1,String contact2) {
+		String [] a = {team_name1,team_name2,location1,date1,time1,note1,contact1,contact2};
 		schedule_history_notif.add(a);
 	}
 	
@@ -61,10 +61,10 @@ public class Schedule extends Main{
 		System.out.println("note :"+data[7][0]);
 		System.out.println("team :"+data[0][0]);
 		System.out.println("leader :"+data[1][0]);
+		System.out.println("Contact :"+data[3][0]);
 		for(String str : data[2]) {
-			System.out.println(str);
+			System.out.println(str); // all player
 		}
-		System.out.println(""+data[3][0]);
 		System.out.println("==========================");
 		System.out.println("vs");
 		System.out.println(this.user[1][0]);
@@ -84,9 +84,9 @@ public class Schedule extends Main{
 				break;
 			}else if(user_input==1){
 				System.out.println("you match to this one");
-				String[] arr = {data[0][0],this.user[1][0],data[4][0],data[5][0],data[6][0],data[7][0]};
+				String[] arr = {data[0][0],this.user[1][0],data[4][0],data[5][0],data[6][0],data[7][0],data[3][0],this.user[4][0]};
 				schedule_history_temp.add(arr);
-				addNotif(data[0][0],this.user[1][0],data[4][0],data[5][0],data[6][0],data[7][0]);
+				addNotif(data[0][0],this.user[1][0],data[4][0],data[5][0],data[6][0],data[7][0],data[3][0],this.user[4][0]);
 				removeSchedule(data[0][0]);
 				break;
 			}else {
@@ -100,7 +100,9 @@ public class Schedule extends Main{
 			if(i[0]==team_name) {
 				System.out.println("woi tolol match anda sudah ada");
 				System.out.printf("%-10s  %-10s %n","Your Team",i[0]); //team 1
+				System.out.printf("%-10s  %-10s %n","Your contact",i[6]); //contact team1
 				System.out.printf("%-10s  %-10s %n","Enemy Team",i[1]); //team 2
+				System.out.printf("%-10s  %-10s %n","Enemy contact",i[7]); //contact team 2
 				System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
 				System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
 				System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
@@ -129,8 +131,15 @@ public class Schedule extends Main{
 			for(String [] i : schedule_history_temp) {
 				if(i[1].contentEquals(this.user[1][0])) {
 					//tampilkan data ongoing match
-					System.out.println("enemy "+i[0]);
-					System.out.println("my "+i[1]);
+					System.out.println("woi tolol match anda sudah ada");
+					System.out.printf("%-10s  %-10s %n","Your Team",i[0]); //team 1
+					System.out.printf("%-10s  %-10s %n","Your contact",i[6]); //contact team1
+					System.out.printf("%-10s  %-10s %n","Enemy Team",i[1]); //team 2
+					System.out.printf("%-10s  %-10s %n","Enemy contact",i[7]); //contact team 2
+					System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
+					System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
+					System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
+					System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
 				}			
 			}
 		}
@@ -178,10 +187,15 @@ public class Schedule extends Main{
 		}else {
 			for(String[] i : schedule_history_temp) {
 				if(i[0].contentEquals(teamName) || i[1].contentEquals(teamName)) {
-					System.out.printf("%s versus %s",i[0],i[1]);
-					System.out.println("Location "+i[2]);
-					System.out.println("date"+i[3]);
-					System.out.println("time"+i[4]);
+					System.out.println("woi tolol match anda sudah ada");
+					System.out.printf("%-10s  %-10s %n","Your Team",i[0]); //team 1
+					System.out.printf("%-10s  %-10s %n","Your contact",i[6]); //contact team1
+					System.out.printf("%-10s  %-10s %n","Enemy Team",i[1]); //team 2
+					System.out.printf("%-10s  %-10s %n","Enemy contact",i[7]); //contact team 2
+					System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
+					System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
+					System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
+					System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
 					System.out.println("\n1. Yes");
 					System.out.println("\n2. Exit");
 					System.out.println("are sure want to cancle this match : ");
