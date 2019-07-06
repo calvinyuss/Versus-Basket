@@ -11,7 +11,7 @@ public class Account extends Main{
 	private String player_name[];
 	private String contact;
 	
-	private int set_userdata(String username) {
+	public int set_userdata(String username) {
 		String[][] account_data = account_datas.get(username);
 		if(account_data == null) {
 			return 0;
@@ -24,6 +24,41 @@ public class Account extends Main{
 			this.contact = account_data[4][0];
 		}
 		return 1;
+	}
+	
+	public void CreateAccount() {
+		boolean flag = true;
+		System.out.print("Username : ");
+		String username = scan.next();
+		System.out.print("\npassword : ");
+		String password = scan.next();
+		scan.nextLine();
+		System.out.print("\nTeam name : ");
+		String teamName = scan.nextLine();
+		System.out.print("\nLeader name : ");
+		String leaderName = scan.nextLine();
+		String[] player = new String[7];
+		for (int i=1;i<=7;i++) {
+			System.out.print("\nPlayer "+i+": ");
+			player[i-1] = scan.nextLine();
+		}
+		System.out.print("\nContact ");
+		String contact = scan.next();
+		
+		for(String[][] str : account_datas.values()) {
+			if(str[2][0]==teamName) {
+				System.out.println("Team name already exist");
+				flag = false;
+				break;
+			}else if (account_datas.containsKey(username)){
+				System.out.println("Username already exist");
+				flag = false;
+				break;
+			}
+		}
+		if(flag) {
+			add_account(username, password, teamName, leaderName, player, contact);
+		}
 	}
 	
 	public void refreshData() {
@@ -40,7 +75,6 @@ public class Account extends Main{
 	}
 	
 	public int login() {
-		while(true) {
 			Lib.clscr();
 			System.out.print("Username : ");
 			String input_username = scan.next();
@@ -49,13 +83,14 @@ public class Account extends Main{
 			if(set_userdata(input_username)==0) {
 				System.out.println("Username or Password incorrect");
 				Lib.pressAnyKeyToContinue();
+				return 0;
 			}else if (input_password.contentEquals(this.password)) {
 				return set_userdata(username);
 			}else{
 				System.out.println("Username or Password incorrect");
 				Lib.pressAnyKeyToContinue();
+				return 0;
 			}
-		}
 	}
 	
 	public void show_profile(){

@@ -117,7 +117,6 @@ public class Schedule extends Main{
 				System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
 				System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
 				System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
-				String[] arr = {i[0],i[1],i[2],i[3],i[4],i[5]};
 				schedule_history_notif.remove(i);
 				Lib.pressAnyKeyToContinue();
 				break;
