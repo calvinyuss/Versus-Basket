@@ -1,5 +1,8 @@
 package lib;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 public class Lib {
@@ -34,5 +37,21 @@ public class Lib {
 			}
 		}
 		return null;
+	}
+	
+	public static void checkDate(String s){
+		try {
+			Date date = new SimpleDateFormat("DD/MM/yyyy").parse(s);
+		} catch (ParseException e) {
+			System.out.println("Invalid Date input format");
+		}	
+	}
+	
+	public static void checkTime(String s){
+		try {
+			Date time = new SimpleDateFormat("hh:mm").parse(s);
+		} catch (ParseException e) {
+			System.out.println("Invalid Time input format");
+		}
 	}
 }
