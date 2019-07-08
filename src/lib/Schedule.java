@@ -109,15 +109,23 @@ public class Schedule extends Main{
 	public void ShowNotif(String team_name) {
 		for(String[] i : schedule_history_notif) {
 			if(i[0]==team_name) {
-				System.out.println("woi tolol match anda sudah ada");
-				System.out.printf("%-10s  %-10s %n","Team 1",i[0]); //team 1
-				System.out.printf("%-10s  %-10s %n","Team 1 Contact",i[6]); //contact team1
-				System.out.printf("%-10s  %-10s %n","Team 2",i[1]); //team 2
-				System.out.printf("%-10s  %-10s %n","Team 2 Contact",i[7]); //contact team 2
-				System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
-				System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
-				System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
-				System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
+				System.out.println("You Got a Match");
+				System.out.printf("%-20s  : %-10s %n","Team 1",i[0]); //team 1
+				System.out.printf("%-20s  : %-10s %n","Team 1 Contact",i[6]); //contact team1
+				System.out.printf("%-20s  : ","Player 1");
+				for( String str : account_datas.get(Lib.getKey(account_datas, i[0]))[3] ) {
+					System.out.printf("|%2s|",str);
+				}
+				System.out.printf("%n%-20s  : %-10s %n","Team 2",i[1]); //team 2
+				System.out.printf("%-20s  : %-10s %n","Team 2 Contact",i[7]); //contact team 2
+				System.out.printf("%-20s  : ","Player 2");
+				for( String str : account_datas.get(Lib.getKey(account_datas, i[1]))[3] ) {
+					System.out.printf("|%2s|",str);
+				}
+				System.out.printf("%n%-20s  : %-10s %n","Leader",i[2]); // location
+				System.out.printf("%-20s  : %-10s %n","Date",i[3]); //date
+				System.out.printf("%-20s  : %-10s %n","Time",i[4]); //time
+				System.out.printf("%-20s  : %-10s %n","Location",i[5]); //location
 				schedule_history_notif.remove(i);
 				Lib.pressAnyKeyToContinue();
 				break;
@@ -128,31 +136,38 @@ public class Schedule extends Main{
 	public void showHistory() {
 		if(schedule_data.containsKey(this.user[1][0])) {
 			//jika create match sudah ada dan belum di click user lain
-			System.out.printf("%-10s  %-10s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
-			System.out.printf("%-10s  %-10s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
-			System.out.printf("%-18s","Player");
+			System.out.printf("%-10s  : %-10s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
+			System.out.printf("%-10s  : %-10s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
+			System.out.printf("%-10s  : ","Player");
 			for(String str : schedule_data.get(this.user[1][0])[2]) {
-				System.out.printf("|&-2s|",str);
+				System.out.printf("|%2s|",str);
 			}
-			System.out.printf("%-10s  %-10s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
-			System.out.printf("%-10s  %-10s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
-			System.out.printf("%-10s  %-10s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
-			System.out.printf("%-10s  %-10s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
-			System.out.printf("%-10s  %-10s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
+			System.out.printf("%-10s  : %-10s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
+			System.out.printf("%-10s  : %-10s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
+			System.out.printf("%-10s  : %-10s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
+			System.out.printf("%-10s  : %-10s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
+			System.out.printf("%-10s  : %-10s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
 		}else {
 			// jika sudah ketemu match dengan user lain
 			for(String [] i : schedule_history_temp) {
 				if(i[1].contentEquals(this.user[1][0]) || i[0].contentEquals(this.user[1][0])) {
 					//tampilkan data ongoing match
-					System.out.println("woi tolol match anda sudah ada");
-					System.out.printf("%-10s  %-10s %n","Team 1",i[0]); //team 1
-					System.out.printf("%-10s  %-10s %n","Team 1 Contact",i[6]); //contact team1
-					System.out.printf("%-10s  %-10s %n","Team 2",i[1]); //team 2
-					System.out.printf("%-10s  %-10s %n","Team 2 Contact",i[7]); //contact team 2
-					System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
-					System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
-					System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
-					System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
+					System.out.printf("%-20s  : %-10s %n","Team 1",i[0]); //team 1
+					System.out.printf("%-20s  : %-10s %n","Team 1 Contact",i[6]); //contact team1
+					System.out.printf("%-20s  : ","Player 1");
+					for( String str : account_datas.get(Lib.getKey(account_datas, i[0]))[3] ) {
+						System.out.printf("|%2s|",str);
+					}
+					System.out.printf("%n%-20s  : %-10s %n","Team 2",i[1]); //team 2
+					System.out.printf("%-20s  : %-10s %n","Team 2 Contact",i[7]); //contact team 2
+					System.out.printf("%-20s  : ","Player 2");
+					for( String str : account_datas.get(Lib.getKey(account_datas, i[1]))[3] ) {
+						System.out.printf("|%2s|",str);
+					}
+					System.out.printf("%n%-20s  : %-10s %n","Leader",i[2]); // location
+					System.out.printf("%-20s  : %-10s %n","Date",i[3]); //date
+					System.out.printf("%-20s  : %-10s %n","Time",i[4]); //time
+					System.out.printf("%-20s  : %-10s %n","Location",i[5]); //location
 				}			
 			}
 		}
@@ -169,19 +184,20 @@ public class Schedule extends Main{
 	
 	public void cancleMatch(String teamName) {
 		if(schedule_data.containsKey(this.user[1][0])) {
-			System.out.printf("%-10s  %s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
-			System.out.printf("%-10s  %s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
+			System.out.printf("%-10s  : %s %n","Team",schedule_data.get(this.user[1][0])[0][0]);
+			System.out.printf("%-10s  : %s %n","Leader",schedule_data.get(this.user[1][0])[1][0]);
+			System.out.printf("%-10s  : ","Player");
 			for(String str : schedule_data.get(this.user[1][0])[2]) {
-				System.out.printf("|&-2s|",str);
+				System.out.printf("|%2s|",str);
 			}
-			System.out.printf("%n%-10s  %s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
-			System.out.printf("%-10s  %s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
-			System.out.printf("%-10s  %s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
-			System.out.printf("%-10s  %s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
-			System.out.printf("%-10s  %s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
+			System.out.printf("%n%-10s  : %s %n","Contact",schedule_data.get(this.user[1][0])[3][0]);
+			System.out.printf("%-10s  : %s %n","Location",schedule_data.get(this.user[1][0])[4][0]);
+			System.out.printf("%-10s  : %s %n","Date",schedule_data.get(this.user[1][0])[5][0]);
+			System.out.printf("%-10s  : %s %n","Time",schedule_data.get(this.user[1][0])[6][0]);
+			System.out.printf("%-10s  : %s %n","Note",schedule_data.get(this.user[1][0])[7][0]);
 			System.out.println("1. Yes");
 			System.out.println("2. Exit");
-			System.out.println("are sure want to cancle this match : ");
+			System.out.print("are sure want to cancle this match : ");
 			int userInput = scan.nextInt();
 			try {
 				if(userInput==1) {
@@ -196,24 +212,31 @@ public class Schedule extends Main{
 					System.out.println("Input 1 - 2");
 				}					
 			}catch(InputMismatchException e) {
-				System.out.println("Integer only");
+				System.out.println("Invalid Input Integer only");
 			}
 			
 		}else {
 			for(String[] i : schedule_history_temp) {
 				if(i[0].contentEquals(teamName) || i[1].contentEquals(teamName)) {
-					System.out.println("woi tolol match anda sudah ada");
-					System.out.printf("%-10s  %-10s %n","Your Team",i[0]); //team 1
-					System.out.printf("%-10s  %-10s %n","Your contact",i[6]); //contact team1
-					System.out.printf("%-10s  %-10s %n","Enemy Team",i[1]); //team 2
-					System.out.printf("%-10s  %-10s %n","Enemy contact",i[7]); //contact team 2
-					System.out.printf("%-10s  %-10s %n","Leader",i[2]); // location
-					System.out.printf("%-10s  %-10s %n","Date",i[3]); //date
-					System.out.printf("%-10s  %-10s %n","Time",i[4]); //time
-					System.out.printf("%-10s  %-10s %n","Location",i[5]); //location
+					System.out.printf("%-20s  : %-10s %n","Team 1",i[0]); //team 1
+					System.out.printf("%-20s  : %-10s %n","Team 1 Contact",i[6]); //contact team1
+					System.out.printf("%-20s  : ","Player 1");
+					for( String str : account_datas.get(Lib.getKey(account_datas, i[0]))[3] ) {
+						System.out.printf("|%2s|",str);
+					}
+					System.out.printf("%n%-20s  : %-10s %n","Team 2",i[1]); //team 2
+					System.out.printf("%-20s  : %-10s %n","Team 2 Contact",i[7]); //contact team 2
+					System.out.printf("%-20s  : ","Player 2");
+					for( String str : account_datas.get(Lib.getKey(account_datas, i[1]))[3] ) {
+						System.out.printf("|%2s|",str);
+					}
+					System.out.printf("%n%-20s  : %-10s %n","Leader",i[2]); // location
+					System.out.printf("%-20s  : %-10s %n","Date",i[3]); //date
+					System.out.printf("%-20s  : %-10s %n","Time",i[4]); //time
+					System.out.printf("%-20s  : %-10s %n","Location",i[5]); //location
 					System.out.println("\n1. Yes");
 					System.out.println("\n2. Exit");
-					System.out.println("are sure want to cancle this match : ");
+					System.out.print("are sure want to cancle this match : ");
 					int userInput = scan.nextInt();
 					try {
 						if(userInput==1) {
@@ -229,7 +252,7 @@ public class Schedule extends Main{
 							if(schedule_history_temp.contains(i)) {
 								System.out.println("Somthing wrong can't delete match");
 							}else {
-								System.out.println("match has been deleted");
+								System.out.println("Match has been deleted");
 							}
 							break;
 						}else if(userInput==2) {
@@ -239,7 +262,7 @@ public class Schedule extends Main{
 							break;
 						}					
 					}catch(InputMismatchException e) {
-						System.out.println("Invalid Input");
+						System.out.println("Invalid Input Integer Only");
 						break;
 					}
 				}
@@ -274,17 +297,17 @@ public class Schedule extends Main{
 				}
 				System.out.print("\nInput team name to join match [0 to exit]: "); String user_input =scan.nextLine();
 				if(schedule_data.containsKey(user_input)) {
-					if(this.user[1][0].contentEquals(user_input)){
-						System.out.println("\nCan't join your own match");
-						Lib.pressAnyKeyToContinue();
-					}else {
+//					if(this.user[1][0].contentEquals(user_input)){
+//						System.out.println("\nCan't join your own match");
+//						Lib.pressAnyKeyToContinue();
+//					}else {
 						joinMatch(user_input);						
-					}
+//					}
 					break;
 				}else if(user_input.contentEquals("0")) {
 					break;
 				}else {
-					System.out.println("No match found");
+					System.out.println("No team found");
 					Lib.pressAnyKeyToContinue();
 					break;
 				}
