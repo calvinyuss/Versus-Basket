@@ -29,60 +29,71 @@ public class Main {
 			System.out.println("1. Create account");
 			System.out.println("2. Login");
 			System.out.print("Input : ");
-			int userInput = scan.nextInt();
-			if(userInput == 1) {
-				user.CreateAccount();
-			}else if(userInput == 2) {
-				lable:
-				while(true) {
-					if(user.login()==0) {
-						break;
-					}else {
-						Schedule schedule = new Schedule(user);
-						while(true) {
-							Lib.clscr();
-							user.refreshData();			
-							schedule.ShowNotif(user.get_userdata()[1][0]);
-							Lib.clscr();
-							System.out.println("1. Create match");
-							System.out.println("2. Schedule");
-							System.out.println("3. Profile");
-							System.out.println("4. my match");
-							System.out.println("5. delete match");
-							System.out.println("0. log out");
-							System.out.print("choice : ");
-							try {
-								//error handling infinite loop still error
-								int userInput1 = scan.nextInt();
-								switch(userInput1) {
-								case 1:
-									schedule.create();
-									break;
-								case 2:
-									schedule.showAllSchedule();
-									break;
-								case 3:
-									user.show_profile();
-									break;
-								case 4:
-									schedule.showHistory();
-									break;
-								case 5:
-									schedule.cancleMatch(user.get_userdata()[1][0]);
-									break;
-								case 0:
-									break lable;
-								default:
+			try {
+				int userInput = scan.nextInt();
+				if(userInput == 1) {
+					user.CreateAccount();
+				}else if(userInput == 2) {
+					lable:
+					while(true) {
+						if(user.login()==0) {
+							break;
+						}else {
+							Schedule schedule = new Schedule(user);
+							while(true) {
+								Lib.clscr();
+								user.refreshData();			
+								schedule.ShowNotif(user.get_userdata()[1][0]);
+								Lib.clscr();
+								System.out.println("1. Create match");
+								System.out.println("2. Schedule");
+								System.out.println("3. Profile");
+								System.out.println("4. My match");
+								System.out.println("5. Delete match");
+								System.out.println("0. Log out");
+								System.out.print("Choice : ");
+								try {
+									int userInput1 = scan.nextInt();
+									switch(userInput1) {
+									case 1:
+										schedule.create();
+										break;
+									case 2:
+										schedule.showAllSchedule();
+										break;
+									case 3:
+										user.show_profile();
+										break;
+									case 4:
+										schedule.showHistory();
+										break;
+									case 5:
+										schedule.cancleMatch(user.get_userdata()[1][0]);
+										break;
+									case 0:
+										break lable;
+									default:
+										System.out.println("Input 0 - 4");
+										Lib.pressAnyKeyToContinue();
+									}
+								}catch(InputMismatchException e) {
 									System.out.println("Input 0 - 4");
+									scan.next();
 									Lib.pressAnyKeyToContinue();
 								}
-							}catch(InputMismatchException e) {
-								System.out.println("Wrong Input");
 							}
 						}
 					}
+				}else {
+					System.out.println("Input 1 - 2");
+					Lib.pressAnyKeyToContinue();
 				}
+			}catch(InputMismatchException e) {
+				System.out.println("Input 1 - 2");
+				scan.next();
+				Lib.pressAnyKeyToContinue();
 			}
+			
 		}
 	}
 }
