@@ -43,6 +43,7 @@ public class Main {
 							while(true) {
 								Lib.clscr();
 								user.refreshData();			
+								schedule.refreshHistory();
 								schedule.ShowNotif(user.get_userdata()[1][0]);
 								Lib.clscr();
 								System.out.println("1. Create match");

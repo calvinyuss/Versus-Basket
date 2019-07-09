@@ -25,8 +25,7 @@ public class Lib {
 	        {
 	            System.in.read();
 	        }  
-	        catch(Exception e)
-	        {}  
+	        catch(Exception e){}  
 	 }
 	
 	public static String getKey(Map<String, String[][]> account_datas, String team_name) {
@@ -36,21 +35,5 @@ public class Lib {
 			}
 		}
 		return null;
-	}
-	
-	public static void checkDate(String s){
-		try {
-			Date date = new SimpleDateFormat("DD/MM/yyyy").parse(s);
-		} catch (ParseException e) {
-			System.out.println("Invalid Date input format");
-		}	
-	}
-	
-	public static void checkTime(String s){
-		try {
-			Date time = new SimpleDateFormat("hh:mm").parse(s);
-		} catch (ParseException e) {
-			System.out.println("Invalid Time input format");
-		}
 	}
 }
