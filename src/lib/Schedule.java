@@ -25,6 +25,7 @@ public class Schedule extends Main{
 				flag = true;
 				break;
 			}
+			
 		}
 		if(schedule_data.containsKey(this.user[1][0])){
 			System.out.println("You can only create 1 schedule");
@@ -36,7 +37,7 @@ public class Schedule extends Main{
 			try {
 				System.out.println("Create your schedule");
 				System.out.print("\nLocation : ");
-				location = scan.nextLine();
+				location = scan.next();
 				System.out.print("\nDate (dd/mm/yyyy) : ");
 				date = scan.next();
 				Date dateCheck = new SimpleDateFormat("DD/MM/yyyy").parse(date);
@@ -178,28 +179,6 @@ public class Schedule extends Main{
 			}
 		}
 		// match yang pernah
-		System.out.println("=======================================");
-		for(String [] i : schedule_history) {
-			if(i[0].contentEquals(this.user[1][0])) {
-				System.out.printf("%-20s  : %-10s %n","Team 1",i[0]); //team 1
-				System.out.printf("%-20s  : %-10s %n","Team 1 Contact",i[6]); //contact team1
-				System.out.printf("%-20s  : ","Player 1");
-				for( String str : account_datas.get(Lib.getKey(account_datas, i[0]))[3] ) {
-					System.out.printf("|%2s|",str);
-				}
-				System.out.printf("%n%-20s  : %-10s %n","Team 2",i[1]); //team 2
-				System.out.printf("%-20s  : %-10s %n","Team 2 Contact",i[7]); //contact team 2
-				System.out.printf("%-20s  : ","Player 2");
-				for( String str : account_datas.get(Lib.getKey(account_datas, i[1]))[3] ) {
-					System.out.printf("|%2s|",str);
-				}
-				System.out.printf("%n%-20s  : %-10s %n","Leader",i[2]); // location
-				System.out.printf("%-20s  : %-10s %n","Date",i[3]); //date
-				System.out.printf("%-20s  : %-10s %n","Time",i[4]); //time
-				System.out.printf("%-20s  : %-10s %n","Location",i[5]); //location
-				System.out.println("=============================");
-			}
-		}
 		Lib.pressAnyKeyToContinue();
 	}
 	
@@ -291,31 +270,6 @@ public class Schedule extends Main{
 		}
 		Lib.clscr();
 	}
-	public void refreshHistory() {
-		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-		Date dateTimeNow = new Date();
-		for(String[] str : schedule_history_temp) {
-			try {
-				Date dateTimeSchedule = sf.parse(str[3]+" "+str[4]);
-				if(dateTimeSchedule.after(dateTimeNow)) {
-					if(schedule_history_notif.contains(str)) {
-						schedule_history_notif.remove(str);
-					}
-					schedule_history.add(str);
-					schedule_history_temp.remove(str);
-				}
-			} catch (ParseException e) {}
-		}
-		for(Entry<String, String[][]> entry : account_datas.entrySet()) {
-			Date dateTimeSchedule;
-			try {
-				dateTimeSchedule = sf.parse(entry.getValue()[5][0]+" "+entry.getValue()[6][0]);
-				if(dateTimeSchedule.after(dateTimeNow)) {
-					schedule_data.remove(entry.getKey());
-				}
-			} catch (ParseException e) {}
-		}
-	}
 
 	public void showAllSchedule(){
 		Lib.clscr();
@@ -326,7 +280,7 @@ public class Schedule extends Main{
 			while(true) {
 				for(Entry<String, String[][]> entry : schedule_data.entrySet()) {
 					System.out.printf("%-10s  : %s %n","Team",entry.getValue()[0][0]);
-					System.out.printf("%-10s  : %s %n","Location",entry.getValue()[2][0]);
+					System.out.printf("%-10s  : %s %n","Location",entry.getValue()[4][0]);
 					System.out.printf("%-10s  : %s %n","Date",entry.getValue()[5][0]);
 					System.out.printf("%-10s  : %s %n","Time",entry.getValue()[6][0]);
 					System.out.printf("%-10s  : %s %n","Leader",entry.getValue()[1][0]);

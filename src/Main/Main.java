@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 import lib.Account;
 import lib.Lib;
@@ -13,16 +14,16 @@ public class Main {
 	public static Map<String,String[][]> schedule_data = new HashMap<String,String[][]>();
 	public static ArrayList<String[]>schedule_history_temp = new ArrayList<String[]>();
 	public static ArrayList<String[]>schedule_history_notif = new ArrayList<String[]>();
-	public static ArrayList<String[]>schedule_history = new ArrayList<String[]>();
+//	public static ArrayList<String[]>schedule_history = new ArrayList<String[]>();
 	public static Map<String,String[][]> account_datas = new HashMap<String,String[][]>();
 
 	public static void main(String[] args) {			
 		Scanner scan = new Scanner(System.in);
 		Account user = new Account();
 		
-		user.add_account("username","password","team_name","leader_name",new String[] {"abc","cde"},"contact");
-		user.add_account("username1","password1","team_name1","leader_name1",new String[] {"abc1","cde1"},"contact1");
-		user.add_account("username2","password2","team_name2","leader_name2",new String[] {"abc2","cde2"},"contact2");
+		user.add_account("username","password","Subur","Evan Subur",new String[] {"Evan","Subur","Cy","jebby","mimin"},"08123456789");
+		user.add_account("username1","password1","Galaxy","Ericks",new String[] {"Suliegna","Ferdy","Mantao","Bakpao","Roti Pia"},"0235479541");
+		user.add_account("username2","password2","Notrick","Edwin",new String[] {"Irvin","Salted","Egg","Amoy","Dadar"},"02813654687");
 		
 		while(true) {
 			Lib.clscr();
@@ -43,7 +44,6 @@ public class Main {
 							while(true) {
 								Lib.clscr();
 								user.refreshData();			
-								schedule.refreshHistory();
 								schedule.ShowNotif(user.get_userdata()[1][0]);
 								Lib.clscr();
 								System.out.println("1. Create match");

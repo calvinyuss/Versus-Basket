@@ -32,14 +32,14 @@ public class Account extends Main{
 			System.out.print("Username : ");
 			String username = scan.next();
 			System.out.print("\npassword : ");
-			String password = scan.nextLine();
-			scan.nextLine();
+			String password = scan.next();
 			System.out.print("\nTeam name : ");
+			scan.nextLine();
 			String teamName = scan.nextLine();
 			System.out.print("\nLeader name : ");
 			String leaderName = scan.nextLine();
-			String[] player = new String[2]; //length sebanyak basket player
-			for (int i=1;i<=2;i++) { //diatas kalo ganti jangan lupa yang ini
+			String[] player = new String[5]; //length sebanyak basket player
+			for (int i=1;i<=5;i++) { //diatas kalo ganti jangan lupa yang ini
 				System.out.print("\nPlayer "+i+" : ");
 				player[i-1] = scan.nextLine();
 			}
@@ -90,6 +90,7 @@ public class Account extends Main{
 	
 	public int login() {
 			Lib.clscr();
+			
 			System.out.print("Username : ");
 			String input_username = scan.next();
 			System.out.print("Password : ");

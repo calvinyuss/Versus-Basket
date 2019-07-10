@@ -1,7 +1,5 @@
 package lib;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 public class Lib {
@@ -13,7 +11,7 @@ public class Lib {
 //	        else
 //	            Runtime.getRuntime().exec("clear");
 //	    } catch (IOException | InterruptedException ex) {}
-		for(int i=0;i<=20;i++) {
+		for(int i=0;i<=30;i++) {
 			System.out.println();
 		}
 	}
